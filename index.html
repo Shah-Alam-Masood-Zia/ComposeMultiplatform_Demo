@@ -6,11 +6,18 @@
 <body>
   <button onclick="callNativeGreet()">Greet Native</button>
   <script>
-    function callNativeGreet() {
-      WebViewJsBridge.callNative("Greet", { message: "Hello from WebView!" }, (response) => {
-        console.log("Response from native:", response);
-      });
-    }
-  </script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Your code here
+      function callNativeGreet() {
+        if (typeof WebViewJsBridge !== 'undefined') {
+          WebViewJsBridge.callNative("Greet", { message: "Hello from WebView!" }, (response) => {
+            console.log("Response from native:", response);
+          });
+        } else {
+          console.error("WebViewJsBridge is not defined.");
+        }
+      }
+    });
+  </script>  
 </body>
 </html>
