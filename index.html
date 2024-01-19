@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Test WebView Communication</title>
+</head>
+<body>
+  <button onclick="callNativeGreet()">Greet Native</button>
+  <script>
+    function callNativeGreet() {
+      WebViewJsBridge.callNative("Greet", { message: "Hello from WebView!" }, (response) => {
+        console.log("Response from native:", response);
+      });
+    }
+  </script>
+</body>
+</html>
