@@ -1,32 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test WebView Communication</title>
+    <title>WebView Sample</title>
 </head>
 <body>
-
-<!-- Your HTML content here -->
-
-<button onclick="callNativeGreet()">Greet Native</button>
-
-<!-- Include WebViewJsBridge -->
-<script src="path/to/WebViewJsBridge.js"></script>
-
+<h1>Hello from WebView!</h1>
+<button onclick="sendMessageToNative()">Send Message to Native</button>
 <script>
-    function callNativeGreet() {
-        if (typeof WebViewJsBridge !== 'undefined') {
-            WebViewJsBridge.callNative("Greet", { message: "Hello from WebView!" }, function (response) {
-                console.log("Response from native:", response);
-            });
-        } else {
-            console.error("WebViewJsBridge is not defined.");
-        }
+    function sendMessageToNative() {
+        window.kmpJsBridge.callNative("Greet", JSON.stringify({ message: "Hello from WebView!" }), function (data) {
+            console.log("Response from Native: " + data);
+        });
     }
 </script>
 
 </body>
 </html>
-
