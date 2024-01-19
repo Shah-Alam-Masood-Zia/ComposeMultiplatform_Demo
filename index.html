@@ -1,23 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Test WebView Communication</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test WebView Communication</title>
 </head>
 <body>
-  <button onclick="callNativeGreet()">Greet Native</button>
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      // Your code here
-      function callNativeGreet() {
+
+<!-- Your HTML content here -->
+
+<button onclick="callNativeGreet()">Greet Native</button>
+
+<!-- Include WebViewJsBridge -->
+<script src="path/to/WebViewJsBridge.js"></script>
+
+<script>
+    function callNativeGreet() {
         if (typeof WebViewJsBridge !== 'undefined') {
-          WebViewJsBridge.callNative("Greet", { message: "Hello from WebView!" }, (response) => {
-            console.log("Response from native:", response);
-          });
+            WebViewJsBridge.callNative("Greet", { message: "Hello from WebView!" }, function (response) {
+                console.log("Response from native:", response);
+            });
         } else {
-          console.error("WebViewJsBridge is not defined.");
+            console.error("WebViewJsBridge is not defined.");
         }
-      }
-    });
-  </script>  
+    }
+</script>
+
 </body>
 </html>
+
